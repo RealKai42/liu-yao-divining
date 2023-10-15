@@ -38,6 +38,12 @@ with open('gua.json') as gua_file:
 des_dict = json.loads(file_contents)
 
 
+st.set_page_config(
+    page_title="六爻",
+    page_icon="🔮",
+    layout="centered",
+)
+
 st.markdown('## 六爻')
 st.markdown("""
 > 本网站纯供娱乐（图一乐），所的结果均为随机生成，不建议受其内容影响自己决策。 其生成过程仅供参考，不代表正统操作。仅供测试和娱乐使用，不得用于商业用途和当真。
