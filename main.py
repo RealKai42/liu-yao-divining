@@ -91,9 +91,10 @@ def get_number_for_coin_res(coin_result):
 def format_coin_result(coin_result, i):
     return f"{number_dict[i]} 为 " + "".join([f"{'背' if i>0.5 else '字'}" for i in coin_result]) + " 为 " + get_yin_yang_for_coin_res(coin_result)
 
+def disable():
+    st.session_state["disable_input"] = True
 
-if question := st.chat_input(placeholder="输入你内心的疑问", key='input', disabled=st.session_state.disable_input):
-    st.session_state.disable_input = True
+if question := st.chat_input(placeholder="输入你内心的疑问", key='input', disabled=st.session_state.disable_input, on_submit=disable):
     add_message("user", question)
     first_yin_yang = []
     for i in range(3):
