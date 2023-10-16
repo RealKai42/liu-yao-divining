@@ -1,5 +1,6 @@
-# 六爻
+# 六爻游戏
 
-> TODO
+# demo
 
-# What you see is what you get
+![demo1](./doc/demo1.png)
+![demo2](./doc/demo2.png)
