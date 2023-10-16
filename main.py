@@ -79,14 +79,14 @@ for message in st.session_state.messages:
                 st.video(content["content"])
 
 
-def add_message(role, content):
+def add_message(role, content, delay=0.05):
      with st.chat_message(role):
         message_placeholder = st.empty()
         full_response = ""
 
-        for chunk in content.split():
-            full_response += chunk + " "
-            time.sleep(0.1)
+        for chunk in list(content):
+            full_response += chunk + ""
+            time.sleep(delay)
             # Add a blinking cursor to simulate typing
             message_placeholder.markdown(full_response + "▌")
         message_placeholder.markdown(full_response)
@@ -128,29 +128,32 @@ if question := st.chat_input(placeholder="输入你内心的疑问", key='input'
 
     gua = second_gua + first_gua
     gua_des = des_dict[gua]
-    with st.chat_message("assistant"):
-        st.markdown(f"""
+    add_message("assistant", f"""
         六爻结果: {gua}  
         卦名为：{gua_des['name']}   
         {gua_des['des']}   
         卦辞为：{gua_des['sentence']}   
     """)
-        
-    response = openai.ChatCompletion.create(
-        engine="gpt35",
-        messages = [{"role":"system","content":"你是出生于一个中华六爻世家的算卦人，你可以根据来者所占卜之事和卦象，并利用这个卦象解释为来者所占卜之事提供有效的建议，并尽可能乐观积极向上的回答，引导占卜之人向好的方向发展。"},
-                    {"role":"user","content":f"""
-                    问题是：{question},
-                    六爻结果是：{gua},
-                    卦名为：{gua_des['name']},
-                    {gua_des['des']},
-                    卦辞为：{gua_des['sentence']}"""},
-                    ],
-        temperature=0.7,
-        max_tokens=800,
-        top_p=0.95,
-        frequency_penalty=0,
-        presence_penalty=0,
-        stop=None)
-    with st.chat_message("assistant"):
-        st.markdown(response.choices[0].message.content)
+
+    with st.spinner('加载解读中，请稍等 ......'):
+        response = openai.ChatCompletion.create(
+            engine="gpt35",
+            messages = [{"role":"system","content":"你是一位出自中华六爻世家的卜卦专家，你的任务是根据卜卦者的问题和得到的卦象，为他们提供有益的建议。你的解答应基于卦象的理解，同时也要尽可能地展现出乐观和积极的态度，引导卜卦者朝着积极的方向发展。"},
+                        {"role":"user","content":f"""
+                        问题是：{question},
+                        六爻结果是：{gua},
+                        卦名为：{gua_des['name']},
+                        {gua_des['des']},
+                        卦辞为：{gua_des['sentence']}"""},
+                        ],
+            temperature=0.7,
+            max_tokens=500,
+            top_p=0.95,
+            frequency_penalty=0.5,
+            presence_penalty=0.1,
+            stop=None)
+    add_message("assistant", response.choices[0].message.content)
+    time.sleep(0.1)
+
+    add_message("assistant", """感谢使用，[网站源代码](https://github.com/RealKai42/liu-yao-divining)  
+                     玩的开心记得点个 star 呀 ❤️""", 0.01)
