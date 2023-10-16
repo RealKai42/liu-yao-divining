@@ -126,7 +126,7 @@ if question := st.chat_input(placeholder="输入你内心的疑问", key='input'
     second_gua = gua_dict["".join(second_yin_yang)]
     add_message("assistant", f"您的次卦为：{second_gua}")
 
-    gua = first_gua + second_gua  
+    gua = second_gua + first_gua
     gua_des = des_dict[gua]
     with st.chat_message("assistant"):
         st.markdown(f"""
