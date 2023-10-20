@@ -50,7 +50,9 @@ st.markdown("""
 > 此外，其生成结果的过程仅供参考，只是游戏流程的一部分，不代表任何正统操作。  
 > 本网站只是为了测试和娱乐，不允许用于商业用途，所有的内容都不能当作真实的，未成年人请勿使用。请各位用户理性对待，保持娱乐的心态，不要依赖或深信其结果。  
               
-🥺 试试作者的 [其他作品](https://kaiyi.cool)    
+🥺   
+试试作者的 [其他作品](https://kaiyi.cool)   
+玩的开心记得点个 star 呀 [网站源代码](https://github.com/RealKai42/mbti-solver)     
 """)
 st.markdown("""
             六爻为丢 **六次** 三枚硬币，根据三枚硬币的正反（字背）对应本次阴阳，三次阴阳对应八卦中的一卦  
@@ -86,7 +88,6 @@ def add_message(role, content, delay=0.05):
         for chunk in list(content):
             full_response += chunk + ""
             time.sleep(delay)
-            # Add a blinking cursor to simulate typing
             message_placeholder.markdown(full_response + "▌")
         message_placeholder.markdown(full_response)
 
@@ -153,5 +154,9 @@ if question := st.chat_input(placeholder="输入你内心的疑问", key='input'
             stop=None)
     add_message("assistant", response.choices[0].message.content)
     time.sleep(0.1)
-
-    add_message("assistant", """感谢使用，🥺 试试作者的 [其他作品](https://kaiyi.cool) """, 0.01)
+   
+    add_message("assistant", """感谢使用  
+                🥺    
+试试作者的 [其他作品](https://kaiyi.cool)   
+玩的开心记得点个 star 呀 [网站源代码](https://github.com/RealKai42/mbti-solver)     
+                """, 0.01)
