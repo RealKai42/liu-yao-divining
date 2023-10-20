@@ -52,7 +52,7 @@ st.markdown("""
               
 🥺   
 试试作者的 [其他作品](https://kaiyi.cool)   
-玩的开心记得点个 star 呀 [网站源代码](https://github.com/RealKai42/mbti-solver)     
+玩的开心记得点个 star 呀 [网站源代码](https://github.com/RealKai42/liu-yao-divining)     
 """)
 st.markdown("""
             六爻为丢 **六次** 三枚硬币，根据三枚硬币的正反（字背）对应本次阴阳，三次阴阳对应八卦中的一卦  
@@ -158,5 +158,5 @@ if question := st.chat_input(placeholder="输入你内心的疑问", key='input'
     add_message("assistant", """感谢使用  
                 🥺    
 试试作者的 [其他作品](https://kaiyi.cool)   
-玩的开心记得点个 star 呀 [网站源代码](https://github.com/RealKai42/mbti-solver)     
+玩的开心记得点个 star 呀 [网站源代码](https://github.com/RealKai42/liu-yao-divining)     
                 """, 0.01)
