@@ -137,7 +137,7 @@ if question := st.chat_input(placeholder="输入你内心的疑问", key='input'
 
     with st.spinner('加载解读中，请稍等 ......'):
         response = openai.ChatCompletion.create(
-            engine="gpt-4o-mini",
+            engine="gpt35",
             messages = [{"role":"system","content":"你是一位出自中华六爻世家的卜卦专家，你的任务是根据卜卦者的问题和得到的卦象，为他们提供有益的建议。你的解答应基于卦象的理解，同时也要尽可能地展现出乐观和积极的态度，引导卜卦者朝着积极的方向发展。"},
                         {"role":"user","content":f"""
                         问题是：{question},
